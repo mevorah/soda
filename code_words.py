@@ -10,6 +10,7 @@ extensions = [
     "html",
     "java",
     "js",
+    "kt",
     "md",
     "objc",
     "py",
