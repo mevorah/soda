@@ -1,0 +1,22 @@
+current=""
+while true; do 
+  new=$(python active_window.py)
+  if [ "$new" != "$current" ] ; then
+    clear
+    current=$new
+    # If a code file is open, it will be in it's title. Deconstruct
+    # the name into words
+    code_filename_components=$(python code_words.py "$current")
+        
+    # If there is a code file name in the window title and words were created,
+    # then submit to abstract.py to fetch and print images
+    if [ ! -z "$code_filename_components" ] ; then
+      # Print words
+      echo $code_filename_components
+      python abstract.py "$code_filename_components"
+    fi
+  fi
+  
+  # Refresh every 1 second
+  sleep 1 
+done
